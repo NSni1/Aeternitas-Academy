@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script defer type="text/javascript" src="scripts/script.js"></script>
+</head>
+<body class="w-screen h-screen scroll-smooth selection:text-black selection:bg-white text-white bg-black">
+    <header class="z-10 fixed flex justify-end items-center h-20 w-[98%]">
+        <h1 class="font-bold hover:underline hover:cursor-pointer">Menu</h1>
+    </header>
+    <div id="home" class="h-full w-full bg-[url('../assets/hbg.jpg')] relative">
+        <div class="bg-[linear-gradient(to_top,#000,60%,transparent)] h-full w-full grid backdrop-blur-md">
+            <span class="text-[50px] text-center self-center motion-safe:animate-fade-up">"Intellectual Growth should commence at birth<br>and cease at death."</span>
+            <button class="[--local-btn-size:80px] rounded-full border-white border w-[var(--local-btn-size)] aspect-square absolute hover:bg-white left-[calc(95%-var(--local-btn-size))] top-[calc(95%-var(--local-btn-size))] transition-[background-color] duration-250 grid place-items-center group hover:cursor-pointer motion-safe:animate-fade-up"
+            data-desc="navTo#schools">
+                <img class="rotate-180 h-[50%] group-hover:invert" src="./assets/Arrow.png">
+            </button>
+        </div>
+    </div>
+    <div id="schools" data-school="" class="h-full w-full bg-black bg-center will-change-[background-position,background-image]">
+        <div class="backdrop-blur h-full w-full grid relative backdrop-brightness-50">
+            <div class="h-[60%] w-[50%] self-center flex flex-col items-center justify-center">
+                <span class="text-9xl relative">Schools</span>
+                <span class="text-7xl relative left-[30%]">Pick the right choice to pursue your dreams</span>
+            </div>
+            <div class="h-[20%] top-[80%] absolute w-full flex flex-row items-center justify-center [--col-gap:50px]">
+                <span class="disabled lr-button mr-[var(--col-gap)]">&lt;</span>
+                <div id="schoolsGrid" class="grid items-center place-items-center grid-cols-[repeat(3,100%)] overflow-clip text-3xl relative w-[40%] h-full">
+                    <div class="active school-frame">
+                        <button data-school-name="Artenitas<br>School of Arts" data-school-desc="Lorem ipsum dolor sit amet.">Arts</button>
+                        <button data-school-name="" data-school-desc="">Business</button>
+                        <button data-school-name="" data-school-desc="">Education</button>
+                        <button data-school-name="" data-school-desc="">Engineering</button>
+                    </div>
+                    <div class="school-frame">
+                        <button data-school-name="" data-school-desc="">Medicine</button>
+                        <button data-school-name="" data-school-desc="">Law</button>
+                        <button data-school-name="" data-school-desc="">Science</button>
+                        <button data-school-name="" data-school-desc="">Humanities</button>
+                    </div>
+                </div>
+                <span class="lr-button ml-[var(--col-gap)]">&gt;</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

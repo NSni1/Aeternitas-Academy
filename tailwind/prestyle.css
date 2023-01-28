@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Mirza", "Open Sans", "Noto Sans", sans-serif;
+    }
+
+    #schools[data-school="Arts"] {
+        @apply bg-[url("../assets/asbg.jpg")] animate-bg-in;
+    }
+    #schools[data-school="\\change\\"] span.text-9xl {
+        @apply animate-title-back;
+    }
+    #schools[data-school]:not([data-school=""]):not([data-school="\\change\\"]) span.text-9xl {
+        /* School Title */
+        @apply animate-title-change;
+    }
+    #schools[data-school]:not([data-school=""]):not([data-school="\\change\\"]) span.text-7xl {
+        /* School Description */
+        @apply animate-desc-change;
+    }
+}
+
+@layer utilities {
+    .disabled {
+        @apply text-gray-600 transition-colors duration-300;
+    }
+    .lr-button {
+        @apply hover:cursor-pointer select-none text-xl;
+    }
+    .school-frame {
+        @apply flex gap-x-[var(--col-gap)] pointer-events-none justify-center absolute opacity-0 transition-opacity duration-300;
+    }
+    .school-frame.active {
+        @apply opacity-100 animate-[sfa_5s_ease-out_forwards] pointer-events-auto;
+    }
+}
