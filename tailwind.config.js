@@ -8,7 +8,8 @@ module.exports = {
         "title-change": "title-change 500ms ease-out forwards",
         "title-back": "title-back 500ms ease-out forwards",
         "bg-in": "bg-in 500ms ease-out forwards",
-        "desc-change": "desc-change 500ms ease-out forwards"
+        "desc-change": "desc-change 500ms ease-out forwards",
+        "desc-back": "desc-back 500ms ease-out forwards"
       },
       keyframes: {
         "fade-up": {
@@ -24,10 +25,12 @@ module.exports = {
         "title-back": {
           "0%": {
             opacity: 0,
-            top: "-50%"
+            fontSize: "8rem",
+            top: "-10%"
           },
           "100%": {
             opacity: 1,
+            fontSize: "8rem",
             top: "0%"
           }
         },
@@ -63,6 +66,20 @@ module.exports = {
             fontSize: "3rem",
             left: "90%",
             top: "-10%"
+          }
+        },
+        "desc-back": {
+          "0%": {
+            opacity: 0,
+            fontSize: "4.5rem",
+            left: "30%",
+            top: "-10%"
+          },
+          "100%": {
+            opacity: 1,
+            fontSize: "4.5rem",
+            left: "30%",
+            top: "0%"
           }
         }
       }

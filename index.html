@@ -7,7 +7,7 @@
     <script defer type="text/javascript" src="scripts/script.js"></script>
 </head>
 <body class="w-screen h-screen scroll-smooth selection:text-black selection:bg-white text-white bg-black">
-    <header class="z-10 fixed flex justify-end items-center h-20 w-[98%]">
+    <header class="text-xl z-10 fixed right-[3%] top-[5%] h-20">
         <h1 class="font-bold hover:underline hover:cursor-pointer">Menu</h1>
     </header>
     <div id="home" class="h-full w-full bg-[url('../assets/hbg.jpg')] relative">
@@ -21,15 +21,21 @@
     </div>
     <div id="schools" data-school="" class="h-full w-full bg-black bg-center will-change-[background-position,background-image]">
         <div class="backdrop-blur h-full w-full grid relative backdrop-brightness-50">
+            <div data-who="schoolsMainProps" class="hidden absolute group/back hover:cursor-pointer left-[50px] top-[35px] w-fit h-fit flex flex-row items-center gap-[10px]">
+                <div class="[--size:35px] rounded-full w-[var(--size)] h-[var(--size)] rotate-[-90deg] border-white border group-hover/back:bg-white grid place-items-center transition-[background-color]">
+                    <img class="max-w-[80%] group-hover/back:invert transition-[filter]" src="./assets/Arrow.png">
+                </div>
+                <span class="text-2xl h-[25px]">Back</span>
+            </div>
             <div class="h-[60%] w-[50%] self-center flex flex-col items-center justify-center">
-                <span class="text-9xl relative">Schools</span>
-                <span class="text-7xl relative left-[30%]">Pick the right choice to pursue your dreams</span>
+                <span data-who="schoolsMainProps" class="text-9xl relative">Schools</span>
+                <span data-who="schoolsMainProps" class="text-7xl relative left-[30%]">Pick the right choice to pursue your dreams</span>
             </div>
             <div class="h-[20%] top-[80%] absolute w-full flex flex-row items-center justify-center [--col-gap:50px]">
                 <span class="disabled lr-button mr-[var(--col-gap)]">&lt;</span>
                 <div id="schoolsGrid" class="grid items-center place-items-center grid-cols-[repeat(3,100%)] overflow-clip text-3xl relative w-[40%] h-full">
                     <div class="active school-frame">
-                        <button data-school-name="Artenitas<br>School of Arts" data-school-desc="Lorem ipsum dolor sit amet.">Arts</button>
+                        <button data-school-name="Artenitas" data-school-subject="Arts" data-school-desc="Lorem ipsum dolor sit amet.">Arts</button>
                         <button data-school-name="" data-school-desc="">Business</button>
                         <button data-school-name="" data-school-desc="">Education</button>
                         <button data-school-name="" data-school-desc="">Engineering</button>

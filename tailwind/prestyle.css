@@ -13,6 +13,9 @@
     #schools[data-school="\\change\\"] span.text-9xl {
         @apply animate-title-back;
     }
+    #schools[data-school="\\change\\"] span.text-7xl {
+        @apply animate-desc-back;
+    }
     #schools[data-school]:not([data-school=""]):not([data-school="\\change\\"]) span.text-9xl {
         /* School Title */
         @apply animate-title-change;

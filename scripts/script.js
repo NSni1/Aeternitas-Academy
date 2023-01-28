@@ -1,56 +1,112 @@
-const homeBtn = document.querySelector("button[data-desc=\"navTo#schools\"]");
-const schoolsPage = document.getElementById("schools");
-const title = schoolsPage.querySelector(".text-9xl");
-const desc = schoolsPage.querySelector(".text-7xl");
-homeBtn.addEventListener("click", () => {
-    window.scrollTo({top: schoolsPage.getBoundingClientRect().top, behavior: "smooth"});
-}); // Manual implementation of smooth scrolling because scroll-behavior: smooth doesn't work (in Firefox, at least)
+class HomePage {
+    #Object;
+    #scrollButton;
 
-const lbutton = document.querySelector(".lr-button");
-const rbutton = lbutton.nextElementSibling.nextElementSibling;
-
-const schoolsGrid = document.getElementById("schoolsGrid");
-
-const schoolFrames = schoolsGrid.children;
-let currentSchoolIndex = 0;
-
-const schoolFramesMaxIndex = schoolFrames.length - 1;
-
-lbutton.addEventListener("click", () => {
-    if (!lbutton.classList.contains("disabled")) {
-        schoolFrames[currentSchoolIndex--].classList.remove("active");
-        schoolFrames[currentSchoolIndex].classList.add("active");
-
-        if (!currentSchool)
-            lbutton.classList.add("disabled");
-        if (currentSchool < schoolFramesMaxIndex)
-            rbutton.classList.remove("disabled");
+    constructor(id, schoolsPageTop) {
+        this.#Object = document.getElementById(id);
+        this.#scrollButton = this.#Object.querySelector("button[data-desc=\"navTo#schools\"]");
+        this.#scrollButton.addEventListener("click", () => {
+            window.scrollTo({top: schoolsPageTop, behavior: "smooth"});
+        });
     }
-});
+};
 
-rbutton.addEventListener("click", () => {
-    if (!rbutton.classList.contains("disabled")) {
-        schoolFrames[currentSchoolIndex++].classList.remove("active");
-        schoolFrames[currentSchoolIndex].classList.add("active");
+class SchoolsPage {
+    #Object;
+    #title;
+    #desc;
+    #clsButton;
+    #lButton;
+    #lButtonOn;
+    #rButton;
+    #rButtonOn;
+    #grid;
+    #gridFrames;
+    #gridIndex;
+    #gridMaxIndex;
 
-        if (currentSchoolIndex == schoolFramesMaxIndex)
-            rbutton.classList.add("disabled");
-        if (currentSchoolIndex > 0)
-            lbutton.classList.remove("disabled");
-    }
-});
+    constructor(id) {
+        /* BEGIN -- DEFINITION OF PROPERTIES */
+        // HTML Object
+        this.#Object = document.getElementById(id);
+        const mainProperties = this.#Object.querySelectorAll("*[data-who='schoolsMainProps']");
+        this.#clsButton = mainProperties[0];
+        this.#title = mainProperties[1];
+        this.#desc = mainProperties[2];
 
-/* Registering all school buttons */
-(() => {
-    for (let idx = schoolFramesMaxIndex; idx >= 0; --idx) {
-        const schoolFrameChildren = schoolFrames[idx].children;
-        for (let idx2 = schoolFrameChildren.length - 1; idx2 >= 0; --idx2) {
-            const schoolFrameChild = schoolFrameChildren[idx2];
-            schoolFrameChild.addEventListener("click", () => {
-                schoolsPage.setAttribute("data-school", schoolFrameChild.innerText);
-                title.innerHTML = schoolFrameChild.getAttribute("data-school-name");
-                desc.innerText = schoolFrameChild.getAttribute("data-school-desc");
+        const buttons = this.#Object.getElementsByClassName("lr-button");
+        this.#lButton = buttons[0];
+        this.#lButtonOn = false;
+        this.#rButton = buttons[1];
+        this.#rButtonOn = true; // The schools grid is initially max-scrolled to the left, so naturally the right navigation button should be on (since there are frames on the right)
+
+        // Schools Navigation Grid
+        this.#grid = this.#Object.querySelector("#schoolsGrid");
+        this.#gridFrames = this.#grid.children;
+        this.#gridIndex = 0;
+        this.#gridMaxIndex = this.#gridFrames.length - 1;
+
+        /* END -- DEFINITION OF PROPERTIES */
+
+        /* BEGIN -- EVENT LISTENERS */
+        this.#lButton.addEventListener("click", () => {
+            if (this.#lButtonOn) {
+                this.#gridFrames[this.#gridIndex].classList.remove("active");
+                this.#gridFrames[--this.#gridIndex].classList.add("active");
+
+                if (this.#gridIndex === 0) {
+                    this.#lButton.classList.add("disabled");
+                    this.#lButtonOn = false;
+                }
+                if (this.#gridIndex < this.#gridMaxIndex) {
+                    this.#rButton.classList.remove("disabled");
+                    this.#rButtonOn = true;
+                }
+            }
+        });
+
+        this.#rButton.addEventListener("click", () => {
+            if (this.#rButtonOn) {
+                this.#gridFrames[this.#gridIndex].classList.remove("active");
+                this.#gridFrames[++this.#gridIndex].classList.add("active");
+
+                if (this.#gridIndex === this.#gridMaxIndex) {
+                    this.#rButton.classList.add("disabled");
+                    this.#rButtonOn = false;
+                }
+                if (this.#gridIndex > 0) {
+                    this.#lButton.classList.remove("disabled");
+                    this.#lButtonOn = true;
+                }
+            }
+        });
+
+        Array.from(this.#gridFrames).forEach((element) => {
+            Array.from(element.children).forEach((schoolButton) => {
+                schoolButton.addEventListener("click", () => {
+                    this.#Object.setAttribute("data-school", schoolButton.innerText);
+                    this.#title.innerHTML = 
+                        schoolButton.getAttribute("data-school-name")
+                        .concat(`<br>${schoolButton.getAttribute("data-school-subject")}`);
+                    this.#desc.innerText = schoolButton.getAttribute("data-school-desc");
+                    this.#clsButton.classList.remove("hidden");
+                });
             });
-        }
+        });
+
+        this.#clsButton.addEventListener("click", () => {
+            this.#Object.setAttribute("data-school", "\\change\\");
+            this.#title.innerHTML = "Schools";
+            this.#desc.innerText = "Pick the right choice to pursue your dreams";
+            this.#clsButton.classList.add("hidden");
+        });
+        /* END -- EVENT LISTENERS */
     }
-})();
+
+    get top() {
+        return this.#Object.getBoundingClientRect().top + window.scrollY;
+    }
+};
+
+const schoolsPageInstance = new SchoolsPage("schools");
+const homePageInstance = new HomePage("home", schoolsPageInstance.top);
