@@ -11,7 +11,7 @@
         <h1 class="font-bold hover:underline hover:cursor-pointer">Menu</h1>
     </header>
     <div id="home" class="h-full w-full bg-[url('../assets/hbg.jpg')] relative">
-        <div class="bg-[linear-gradient(to_top,#000,60%,transparent)] h-full w-full grid backdrop-blur-md">
+        <div class="bg-[linear-gradient(to_top,#000,60%,transparent)] h-full w-full grid [background-color:#00000080]">
             <span class="text-[50px] text-center self-center motion-safe:animate-fade-up">"Intellectual Growth should commence at birth<br>and cease at death."</span>
             <button class="[--local-btn-size:80px] rounded-full border-white border w-[var(--local-btn-size)] aspect-square absolute hover:bg-white left-[calc(95%-var(--local-btn-size))] top-[calc(95%-var(--local-btn-size))] transition-[background-color] duration-250 grid place-items-center group hover:cursor-pointer motion-safe:animate-fade-up"
             data-desc="navTo#schools">
@@ -19,8 +19,8 @@
             </button>
         </div>
     </div>
-    <div id="schools" data-school="" class="h-full w-full bg-black bg-center will-change-[background-position,background-image]">
-        <div class="backdrop-blur h-full w-full grid relative backdrop-brightness-50">
+    <div id="schools" data-school="" class="h-full w-full bg-black bg-center">
+        <div class="h-full w-full grid relative [background-color:#00000080]">
             <div data-who="schoolsMainProps" class="hidden absolute group/back hover:cursor-pointer left-[50px] top-[35px] w-fit h-fit flex flex-row items-center gap-[10px]">
                 <div class="[--size:35px] rounded-full w-[var(--size)] h-[var(--size)] rotate-[-90deg] border-white border group-hover/back:bg-white grid place-items-center transition-[background-color]">
                     <img class="max-w-[80%] group-hover/back:invert transition-[filter]" src="./assets/Arrow.png">
