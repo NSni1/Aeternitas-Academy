@@ -29,15 +29,13 @@ class SchoolsPage {
         /* BEGIN -- DEFINITION OF PROPERTIES */
         // HTML Object
         this.#Object = document.getElementById(id);
-        const mainProperties = this.#Object.querySelectorAll("*[data-who='schoolsMainProps']");
-        this.#clsButton = mainProperties[0];
-        this.#title = mainProperties[1];
-        this.#desc = mainProperties[2];
+        
+        [this.#clsButton, this.#title, this.#desc] = 
+            [... this.#Object.querySelectorAll("*[data-who='schoolsMainProps']")];
 
-        const buttons = this.#Object.getElementsByClassName("lr-button");
-        this.#lButton = buttons[0];
+        [this.#lButton, this.#rButton] = [... this.#Object.getElementsByClassName("lr-button")];
+
         this.#lButtonOn = false;
-        this.#rButton = buttons[1];
         this.#rButtonOn = true; // The schools grid is initially max-scrolled to the left, so naturally the right navigation button should be on (since there are frames on the right)
 
         // Schools Navigation Grid
@@ -87,7 +85,7 @@ class SchoolsPage {
                     this.#Object.setAttribute("data-school", schoolButton.innerText);
                     this.#title.innerHTML = 
                         schoolButton.getAttribute("data-school-name")
-                        .concat(`<br>${schoolButton.getAttribute("data-school-subject")}`);
+                        .concat(`<br>School of ${schoolButton.getAttribute("data-school-subject")}`);
                     this.#desc.innerText = schoolButton.getAttribute("data-school-desc");
                     this.#clsButton.classList.remove("hidden");
                 });
