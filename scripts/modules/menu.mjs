@@ -10,5 +10,5 @@ const closeHandler = () => {
     menu.classList.replace("menu-show", "menu-hide");
 }
 
-openButton.addEventListener(openHandler);
-closeButton.addEventListener(closeHandler);
+openButton.addEventListener("click", openHandler);
+closeButton.addEventListener("click", closeHandler);

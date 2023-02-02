@@ -1,7 +1,7 @@
 import { getScrollTop as gST } from "./content.mjs";
 
 const school = document.getElementById("schools");
-const [name, subject, description] = [... school.querySelector("span[data-who='sch-property']")]
+const [name, subject, description] = [... school.querySelectorAll("span[data-who='sch-property']")]
 const texts = {
     '1': {
         name: "Artenitas",
