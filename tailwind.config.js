@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./index.html"],
   theme: {
+    screens: {
+      "4k": "3500px"
+    },
     extend: {
       animation: {
         "fade-up": "fade-up 1s ease-out forwards",
@@ -9,13 +12,17 @@ module.exports = {
         "title-back": "title-back 500ms ease-out forwards",
         "bg-in": "bg-in 500ms ease-out forwards",
         "desc-change": "desc-change 500ms ease-out forwards",
-        "desc-back": "desc-back 500ms ease-out forwards"
+        "desc-back": "desc-back 500ms ease-out forwards",
+        "menu-show": "menu-show 500ms ease-in-out forwards",
+        "menu-hide": "menu-hide 500ms ease-out forwards",
+        "menu-item-show": "menu-item-show 500ms ease-out forwards",
+        "menu-item-hide": "menu-item-hide 500ms ease-out forwards"
       },
       keyframes: {
         "fade-up": {
           "0%": {
             opacity: 0,
-            transform: "translateY(100%)"
+            transform: "translateY(20%)"
           },
           "100%": {
             opacity: 1,
@@ -26,12 +33,10 @@ module.exports = {
           "0%": {
             opacity: 0,
             fontSize: "8rem",
-            top: "-10%"
           },
           "100%": {
             opacity: 1,
             fontSize: "8rem",
-            top: "0%"
           }
         },
         "title-change": {
@@ -48,10 +53,12 @@ module.exports = {
         },
         "bg-in": {
           "0%": {
-            opacity: 0
+            opacity: 0,
+            backgroundPosition: "center 40%"
           },
           "100%": {
-            opacity: 1
+            opacity: 1,
+            backgroundPosition: "center center"
           }
         },
         "desc-change": {
@@ -80,6 +87,40 @@ module.exports = {
             fontSize: "4.5rem",
             left: "30%",
             top: "0%"
+          }
+        },
+        "menu-show": {
+          "0%": {
+            top: "-100vh"
+          },
+          "100%": {
+            top: "0vh"
+          }
+        },
+        "menu-hide": {
+          "0%": {
+            top: "0vh"
+          },
+          "100%": {
+            top: "-100vh"
+          }
+        },
+        "menu-item-show": {
+          "0%": {
+            opacity: 0,
+            transform: "translateX(-20%)"
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateX(0%)"
+          }
+        },
+        "menu-item-hide": {
+          "0%": {
+            transform: "translateX(0%)"
+          },
+          "100%": {
+            transform: "translateX(-20%)"
           }
         }
       }
