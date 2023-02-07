@@ -5,28 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 
-    <script type="module" src="./scripts/modules/content.mjs"></script>
-    <script type="module" src="./scripts/modules/home.mjs"></script>
-    <script type="module" src="./scripts/modules/menu.mjs"></script>
-    <script type="module" src="./scripts/modules/schools.mjs"></script>
-    <!-- <script type="text/javascript" defer src="scripts/script.js"></script> -->
+    <script type="text/javascript" defer src="./scripts/content.js"></script>
+    <script type="text/javascript" defer src="./scripts/home.js"></script>
+    <script type="text/javascript" defer src="./scripts/menu.js"></script>
+    <script type="text/javascript" defer src="./scripts/schools.js"></script>
 </head>
-<body class="[--cursor-pointer:url('../assets/point.png')_16_16,pointer] cursor-[url('../assets/cur.png')_16_16,default] w-screen h-screen scroll-smooth selection:text-black selection:bg-white text-white bg-black overflow-y-hidden">
-    <div id="menu" class="select-none bg-black h-full w-full absolute z-20 grid grid-cols-3">
+<body class="w-screen h-screen scroll-smooth selection:text-black selection:bg-white text-white bg-black overflow-y-hidden">
+    <div id="menu" class="top-[-100vh] select-none bg-black h-full w-full absolute z-20 grid grid-cols-3">
         <div class="active:bg-white active:text-black z-10 absolute left-[50px] top-[25px] text-xl cursor-[var(--cursor-pointer)] p-[10px] border border-transparent hover:border-white transition-[border-color] rounded-full aspect-square grid place-items-center">
             <span class="h-[1rem]">Close</span>
         </div>
-        <div class="relative bg-[url('../assets/scholar.jpg')] opacity-0 cursor-[var(--cursor-pointer)] group/academics bg-[80%] bg-cover translate-x-[-20%]">
+        <div class="group/academics menuChildren">
             <div class="flex justify-center items-center [background-color:#000000FF] group-hover/academics:[background-color:#00000070] transition-[background-color] ease-out duration-500 h-full w-full">
                 <span class="group-hover/academics:scale-[1.1] ease-out transition-[transform] duration-500 text-7xl 4k:text-[12rem]">Academics</span>
             </div>
         </div>
-        <div class="relative bg-[url('../assets/prih.jpg')] bg-cover opacity-0 bg-[45%] cursor-[var(--cursor-pointer)] group/campus translate-x-[-20%]">
+        <div class="group/campus menuChildren">
             <div class="flex justify-center items-center [background-color:#000000FF] h-full w-full group-hover/campus:[background-color:#00000070] ease-out transition-[background-color] duration-500">
                 <span class="group-hover/campus:scale-[1.1] ease-out transition-[transform] duration-500 text-7xl 4k:text-[12rem]">Campus</span>
             </div>
         </div>
-        <div class="relative bg-[url('../assets/hist.jpg')] bg-[75%] opacity-0 bg-cover cursor-[var(--cursor-pointer)] group/history translate-x-[-20%]">
+        <div class="group/history menuChildren">
             <div class="flex justify-center items-center h-full w-full [background-color:#000000FF] group-hover/history:[background-color:#00000070] ease-out transition-[background-color] duration-500">
                 <span class="group-hover/history:scale-[1.1] ease-out transition-[transform] duration-500 text-7xl 4k:text-[12rem]">History</span>
             </div>
@@ -34,7 +33,7 @@
     </div>
     <div id="content" class="h-screen w-full overflow-y-scroll">
         <header class="text-xl z-10 fixed right-[3%] top-[5%] h-20">
-            <h1 id="openMenu" class="font-bold hover:underline cursor-[var(--cursor-pointer)]">Menu</h1>
+            <h1 id="openMenu" class="select-none font-bold hover:underline cursor-[var(--cursor-pointer)]">Menu</h1>
         </header>
         <div id="home" class="h-full w-full bg-no-repeat bg-cover bg-center bg-[url('../assets/memori.jpg')] relative">
             <div class="bg-[linear-gradient(to_top,#000,60%,transparent)] h-full w-full grid [background-color:#00000080]">
@@ -46,12 +45,15 @@
             </div>
         </div>
         <div id="schools" class="h-full w-full bg-black bg-[length:100%_110%] relative">
+            <div id="schoolsBackBtn">
+                Back
+            </div>
             <div class="h-full w-full relative grid place-items-center [background-color:#000000B0]">
-                <div class="left-[0] ml-[100px] absolute w-[40%] h-fit">
+                <div id="schools-titledesc" class="left-[0] ml-[100px] absolute w-[40%] h-fit">
                     <span class="block text-9xl">Schools</span>
                     <span class="block text-7xl">Pursue your dreams</span>
                 </div>
-                <div class="opacity-0 h-[50%] absolute flex flex-col w-[80%]">
+                <div id="sch-properties-container" class="opacity-0 transition-all h-[50%] absolute flex flex-col w-[80%]">
                     <div class="text-9xl flex flex-col text-center">
                         <span data-who="sch-property"></span> <!-- Name of School -->
                         <span>School of 

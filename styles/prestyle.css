@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --cursor-default: url("../assets/cursors/default.svg") 0 0, default !important;
+    --cursor-pointer: url("../assets/cursors/pointer.svg") 10 5, pointer !important;
+
+    cursor: var(--cursor-default);
+}
+
 @layer base {
     html {
         font-family: "Mirza", "Open Sans", "Noto Sans", sans-serif;
@@ -29,38 +36,45 @@
             @apply animate-desc-back;
         }
     }
+    #schoolsBackBtn {
+        top: 35px;
+        left: 50px;
+        opacity: 0;
+        z-index: 10;
+        position: absolute;
+        cursor: var(--cursor-pointer);
+        @apply text-xl font-bold;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .menu-hide {
-        @apply animate-menu-hide;
+    #schools[data-school] #sch-properties-container {
+        opacity: 1;
     }
-    .menu-hide > *.bg-cover {
-        @apply animate-menu-item-hide;
+
+    .menuChildren {
+        position: relative;
+        background-size: cover;
+        cursor: var(--cursor-pointer);
     }
-    .menu-show {
-        @apply animate-menu-show;
+    .menuChildren:nth-child(2) { /* Academics */
+        background-position: 80%;
+        background-image: url("../assets/scholar.jpg");
     }
-    .menu-show > *.bg-cover {
-        @apply animate-menu-item-show;
+    .menuChildren:nth-child(3) { /* Campus */
+        background-position: 45%;
+        background-image: url("../assets/prih.jpg");
     }
-    .menu-show > *.bg-cover:nth-child(2) {
-        animation-delay: .5s;
-    }
-    .menu-show > *.bg-cover:nth-child(3) {
-        animation-delay: .6s;
-    }
-    .menu-show > *.bg-cover:nth-child(4) {
-        animation-delay: .7s;
+    .menuChildren:nth-child(4) { /* History */
+        background-position: 75%;
+        background-image: url("../assets/hist.jpg");
     }
 }
 
 @layer utilities {
-    #menu:not(.menu-hide):not(.menu-show) {
-        top: -100vh;
-    }
     .disabled {
         @apply text-gray-600 transition-colors duration-300;
+        pointer-events: none;
     }
     .lr-button {
         @apply hover:cursor-[var(--cursor-pointer)] select-none text-xl;
